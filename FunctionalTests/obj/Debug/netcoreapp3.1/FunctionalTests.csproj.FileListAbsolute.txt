@@ -1,0 +1,10 @@
+/Users/ruaapd5/Documents/git/FunctionalTests/FunctionalTests/bin/Debug/netcoreapp3.1/FunctionalTests.deps.json
+/Users/ruaapd5/Documents/git/FunctionalTests/FunctionalTests/bin/Debug/netcoreapp3.1/FunctionalTests.runtimeconfig.json
+/Users/ruaapd5/Documents/git/FunctionalTests/FunctionalTests/bin/Debug/netcoreapp3.1/FunctionalTests.runtimeconfig.dev.json
+/Users/ruaapd5/Documents/git/FunctionalTests/FunctionalTests/bin/Debug/netcoreapp3.1/FunctionalTests.dll
+/Users/ruaapd5/Documents/git/FunctionalTests/FunctionalTests/bin/Debug/netcoreapp3.1/FunctionalTests.pdb
+/Users/ruaapd5/Documents/git/FunctionalTests/FunctionalTests/obj/Debug/netcoreapp3.1/FunctionalTests.csprojAssemblyReference.cache
+/Users/ruaapd5/Documents/git/FunctionalTests/FunctionalTests/obj/Debug/netcoreapp3.1/FunctionalTests.AssemblyInfoInputs.cache
+/Users/ruaapd5/Documents/git/FunctionalTests/FunctionalTests/obj/Debug/netcoreapp3.1/FunctionalTests.AssemblyInfo.cs
+/Users/ruaapd5/Documents/git/FunctionalTests/FunctionalTests/obj/Debug/netcoreapp3.1/FunctionalTests.dll
+/Users/ruaapd5/Documents/git/FunctionalTests/FunctionalTests/obj/Debug/netcoreapp3.1/FunctionalTests.pdb

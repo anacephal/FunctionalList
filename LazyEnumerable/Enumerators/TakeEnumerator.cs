@@ -1,4 +1,6 @@
-namespace FunctionalTests.Lazy.Base
+using LazyEnumerable.Abstract;
+
+namespace LazyEnumerable.Enumerators
 {
   public class TakeEnumerator<T> : ILazyEnumerator<T>
   {

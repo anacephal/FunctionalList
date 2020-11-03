@@ -1,18 +1,19 @@
 using System;
-using System.Linq;
+using FunctionalList;
+using Range = LazyEnumerable.Range;
 
-namespace FunctionalTests.Lazy
+namespace Runner
 {
   public class LazyTestRunner
   {
     public void Do()
     {
-      /*
+      
       new Range(1, 2)
         .Select(_ => new Range(3, 7))
         .SelectMany(l => l)
         .ForEach(Console.WriteLine);
-*/
+
       
 
       return;
@@ -25,7 +26,7 @@ namespace FunctionalTests.Lazy
         .ForEach(Console.WriteLine);
 
       return;
-      var list = List<int>.Nil.Prepend(3);
+      var list = RecursiveList<int>.Nil.Prepend(3);
       var list2 = list.Prepend(5);
       var list3 = list2.Prepend(7);
 

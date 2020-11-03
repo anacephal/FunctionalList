@@ -1,6 +1,6 @@
 using System;
 
-namespace FunctionalTests.Lazy
+namespace LazyEnumerable.Abstract
 {
   public interface ILazyEnumerable<T>
   {
@@ -10,6 +10,5 @@ namespace FunctionalTests.Lazy
     ILazyEnumerable<K> SelectMany<K>(Func<T, ILazyEnumerable<K>> projector);
     ILazyEnumerable<T> Where(Func<T, bool> predicate);
     ILazyEnumerable<T> Take(int limit);
-    List<T> ToList();
   }
 }

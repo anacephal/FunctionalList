@@ -1,45 +1,43 @@
 using System;
-using FunctionalTests.Lazy;
-using FunctionalTests.Lazy.Base;
 
-namespace FunctionalTests
+namespace FunctionalList
 {
-  public class List<T>
+  public class RecursiveList<T>
   {  
     public virtual T Head { get; }
-    public virtual List<T> Tail { get; private set; }
+    public virtual RecursiveList<T> Tail { get; private set; }
     
-    public static List<T> Nil { get; } = new NilList<T>();
+    public static RecursiveList<T> Nil { get; } = new NilRecursiveList<T>();
 
-    public List(T value)
+    public RecursiveList(T value)
     {
       Head = value;
       Tail = null;
     }
 
-    public List<T> Prepend(T value)
+    public RecursiveList<T> Prepend(T value)
     {
-      return new List<T>(value)
+      return new RecursiveList<T>(value)
       {
         Tail = this
       };
     }
 
-    public List<K> Map<K>(Func<T, K> func)
+    public RecursiveList<K> Map<K>(Func<T, K> func)
     {
       return this switch
       {
-        NilList<T> _ => List<K>.Nil,
-        List<T> _ => Tail.Map(func).Prepend(func(Head))
+        NilRecursiveList<T> _ => RecursiveList<K>.Nil,
+        RecursiveList<T> _ => Tail.Map(func).Prepend(func(Head))
       };
     }
 
-    public List<K> MapWithReduce<K>(Func<T, K> func)
+    public RecursiveList<K> MapWithReduce<K>(Func<T, K> func)
     {
-      return ReduceFromRight((accum, cur) => accum.Prepend(func(cur)), List<K>.Nil);
+      return ReduceFromRight((accum, cur) => accum.Prepend(func(cur)), RecursiveList<K>.Nil);
     }
 
-    public List<T> Filter(Func<T, bool> condition)
+    public RecursiveList<T> Filter(Func<T, bool> condition)
     {
       return ReduceFromRight((accum, cur) =>
         condition(cur) switch
@@ -50,7 +48,7 @@ namespace FunctionalTests
       , Nil);
     }
 
-    public (List<T>, List<T>) Partition(Func<T, bool> condition)
+    public (RecursiveList<T>, RecursiveList<T>) Partition(Func<T, bool> condition)
     {
       return ReduceFromRight((tuple, cur) =>
         condition(cur) switch
@@ -64,8 +62,8 @@ namespace FunctionalTests
     {
       return this switch
       {
-        NilList<T> _ => initial,
-        List<T> _ => reducer(Tail.ReduceFromRight(reducer, initial), Head)
+        NilRecursiveList<T> _ => initial,
+        RecursiveList<T> _ => reducer(Tail.ReduceFromRight(reducer, initial), Head)
       };
     }
 
@@ -73,27 +71,27 @@ namespace FunctionalTests
     {
       return this switch
       {
-        NilList<T> _ => initial,
-        List<T> _ => Tail.ReduceFromLeft(reducer, reducer(initial, Head))
+        NilRecursiveList<T> _ => initial,
+        RecursiveList<T> _ => Tail.ReduceFromLeft(reducer, reducer(initial, Head))
       };
     }
 
-    public List<T> ReverseWithReduce()
+    public RecursiveList<T> ReverseWithReduce()
     {
       return ReduceFromLeft((accum, cur) => accum.Prepend(cur), Nil);
     }
 
-    public List<T> Reverse()
+    public RecursiveList<T> Reverse()
     {
       return ReverseInternal(Nil);
     }
 
-    private List<T> ReverseInternal(List<T> accumulated)
+    private RecursiveList<T> ReverseInternal(RecursiveList<T> accumulated)
     {
       return this switch
       {
-        NilList<T> _ => accumulated,
-        List<T> _ => Tail.ReverseInternal(accumulated.Prepend(Head))
+        NilRecursiveList<T> _ => accumulated,
+        RecursiveList<T> _ => Tail.ReverseInternal(accumulated.Prepend(Head))
       };
     }
 
@@ -101,7 +99,7 @@ namespace FunctionalTests
     {
       switch (this)
       {
-        case NilList<T> _:
+        case NilRecursiveList<T> _:
           return;
         default:
         {
@@ -111,14 +109,9 @@ namespace FunctionalTests
         }
       }
     }
-
-    public ILazyEnumerable<T> ToLazyEnumerable()
-    {
-      return new LazyEnumerable<T>(new ListEnumerator<T>(this));
-    }
   }
 
-  public class NilList<T> : List<T>
+  public class NilRecursiveList<T> : RecursiveList<T>
   {
     public override T Head
     {
@@ -128,14 +121,14 @@ namespace FunctionalTests
       }
     }
 
-    public override List<T> Tail {
+    public override RecursiveList<T> Tail {
       get
       {
         throw new ArgumentException();
       }  
     }
 
-    public NilList() : base(default)
+    public NilRecursiveList() : base(default)
     {
         
     }

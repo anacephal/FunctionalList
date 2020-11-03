@@ -1,6 +1,7 @@
 using System;
+using LazyEnumerable.Abstract;
 
-namespace FunctionalTests.Lazy.Base
+namespace LazyEnumerable.Enumerators
 {
   public class SelectEnumerator<T, K> : ILazyEnumerator<K>
   {

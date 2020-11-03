@@ -1,4 +1,4 @@
-namespace FunctionalTests.Lazy
+namespace LazyEnumerable.Abstract
 {
   public interface ILazyEnumerator<T>
   {

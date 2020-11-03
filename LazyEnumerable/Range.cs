@@ -1,7 +1,8 @@
 using System;
-using FunctionalTests.Lazy.Base;
+using LazyEnumerable.Abstract;
+using LazyEnumerable.Base;
 
-namespace FunctionalTests.Lazy
+namespace LazyEnumerable
 {
   public class Range : LazyEnumerable<int>
   {

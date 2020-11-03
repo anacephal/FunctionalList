@@ -1,12 +1,13 @@
 using System;
+using FunctionalList;
 
-namespace FunctionalTests
+namespace Runner
 {
   public class ListTestRunner
   {
     public void Do()
     {
-      var list = List<int>.Nil.Prepend(3);
+      var list = RecursiveList<int>.Nil.Prepend(3);
       var list2 = list.Prepend(5);
       var list3 = list2.Prepend(7);
       var mappedList = list3.MapWithReduce(_ => _ * 7);

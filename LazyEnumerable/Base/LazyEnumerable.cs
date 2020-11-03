@@ -1,6 +1,8 @@
 using System;
+using LazyEnumerable.Abstract;
+using LazyEnumerable.Enumerators;
 
-namespace FunctionalTests.Lazy.Base
+namespace LazyEnumerable.Base
 {
   public class LazyEnumerable<T> : ILazyEnumerable<T>
   {
@@ -42,18 +44,6 @@ namespace FunctionalTests.Lazy.Base
     public virtual ILazyEnumerable<T> Take(int limit)
     {
       return new LazyEnumerable<T>(new TakeEnumerator<T>(GetEnumerator(), limit));
-    }
-
-    public virtual List<T> ToList()
-    {
-      var enumerator = GetEnumerator();
-      var list = List<T>.Nil;
-      while (enumerator.MoveNext())
-      {
-        list = list.Prepend(enumerator.Current);
-      }
-
-      return list;
     }
   }
 }

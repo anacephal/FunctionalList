@@ -1,5 +1,6 @@
 using System;
-using System.Reflection;
+using FunctionalTests.Lazy;
+using FunctionalTests.Lazy.Base;
 
 namespace FunctionalTests
 {
@@ -109,6 +110,11 @@ namespace FunctionalTests
           break;
         }
       }
+    }
+
+    public ILazyEnumerable<T> ToLazyEnumerable()
+    {
+      return new LazyEnumerable<T>(new ListEnumerator<T>(this));
     }
   }
 
